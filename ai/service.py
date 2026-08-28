@@ -2,6 +2,7 @@
 SIH_26 — Real Local AI Service Module
 Uses Sentence Transformers for real vector embedding generation, cosine similarity duplicate detection,
 7-factor priority scoring, and 16-factor university capability vs. practical capacity matching logic.
+Optimized for 512MB RAM compliance on Render cloud instances.
 """
 
 import math
@@ -14,12 +15,25 @@ try:
 except ImportError:
     SENTENCE_TRANSFORMERS_AVAILABLE = False
 
+try:
+    import torch
+    torch.set_num_threads(1)
+    TORCH_AVAILABLE = True
+except Exception:
+    TORCH_AVAILABLE = False
+
 
 class RealAIService:
     """
     Real Local AI Service using Sentence Transformers inference.
     """
-    def __init__(self, model_name: str = "paraphrase-multilingual-MiniLM-L12-v2"):
+    def __init__(self, model_name: Optional[str] = None):
+        if model_name is None:
+            try:
+                from backend.app.core.config import settings
+                model_name = settings.AI_MODEL_NAME
+            except Exception:
+                model_name = "all-MiniLM-L6-v2"
         self.model_name = model_name
         self._model = None
 
@@ -27,10 +41,17 @@ class RealAIService:
         if self._model is None:
             if not SENTENCE_TRANSFORMERS_AVAILABLE:
                 raise RuntimeError("sentence_transformers library is not installed in the environment.")
+            
+            if TORCH_AVAILABLE:
+                try:
+                    torch.set_num_threads(1)
+                except Exception:
+                    pass
+
             try:
                 self._model = SentenceTransformer(self.model_name)
             except Exception as e:
-                # Fallback to lightweight all-MiniLM-L6-v2 if multilingual download fails or is slow
+                # Fallback to lightweight all-MiniLM-L6-v2 if model load or download fails
                 self.model_name = "all-MiniLM-L6-v2"
                 self._model = SentenceTransformer(self.model_name)
 
