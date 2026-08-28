@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, MapPin, Eye, RefreshCw } from 'lucide-react';
+import { MapPin, Eye, RefreshCw } from 'lucide-react';
 
 export default function ProblemsExplorer({ problems, loading, onSelectProblem, onRefresh }) {
   return (
@@ -16,30 +16,30 @@ export default function ProblemsExplorer({ problems, loading, onSelectProblem, o
       </div>
 
       {loading ? (
-        <div className="glass-panel" style={{ padding: '40px', textAlign: 'center', color: 'var(--text-secondary)' }}>
+        <div className="glass-panel" style={{ padding: '40px', textAlign: 'center', color: 'var(--text-secondary)', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
           Loading problems from FastAPI backend...
         </div>
       ) : problems.length === 0 ? (
-        <div className="glass-panel" style={{ padding: '40px', textAlign: 'center', color: 'var(--text-muted)' }}>
+        <div className="glass-panel" style={{ padding: '40px', textAlign: 'center', color: 'var(--text-muted)', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
           No societal problems found in database.
         </div>
       ) : (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '20px' }}>
           {problems.map((p) => (
-            <div key={p.problem_id} className="glass-panel" style={{ padding: '24px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', border: '1px solid var(--border-subtle)' }}>
+            <div key={p.problem_id} className="glass-panel" style={{ padding: '24px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
-                  <span className="badge badge-medium">{p.category}</span>
-                  <span style={{ fontSize: '0.75rem', color: '#818cf8', fontWeight: 700 }}>{p.status}</span>
+                  <span className="badge">{p.category}</span>
+                  <span style={{ fontSize: '0.75rem', color: '#111111', fontWeight: 700 }}>{p.status}</span>
                 </div>
 
-                <h3 style={{ fontSize: '1.2rem', marginBottom: '8px' }}>{p.title}</h3>
+                <h3 style={{ fontSize: '1.2rem', marginBottom: '8px', color: '#111111' }}>{p.title}</h3>
                 <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', marginBottom: '16px', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
                   {p.description}
                 </p>
               </div>
 
-              <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '16px', marginTop: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ borderTop: '1px solid #EEEEEE', paddingTop: '16px', marginTop: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <MapPin size={14} /> {p.locality || p.district}, {p.state}
                 </span>

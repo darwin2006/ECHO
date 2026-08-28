@@ -78,7 +78,7 @@ export default function App() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--bg-dark)' }}>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--background)' }}>
       
       {/* Main Navigation Bar */}
       <Navbar 
@@ -114,12 +114,12 @@ export default function App() {
 
         {activeTab === 'projects' && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            <h2>Active Solution Projects</h2>
+            <h2 style={{ fontSize: '1.6rem', color: '#111111' }}>Active Solution Projects</h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '16px' }}>
               {projects.map(p => (
-                <div key={p.project_id} className="glass-panel" style={{ padding: '20px' }}>
+                <div key={p.project_id} className="glass-panel" style={{ padding: '20px', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
                   <span className="badge badge-success" style={{ marginBottom: '8px' }}>{p.status}</span>
-                  <h3>{p.title}</h3>
+                  <h3 style={{ fontSize: '1.1rem', color: '#111111', margin: '4px 0' }}>{p.title}</h3>
                   <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>University: {p.university_name}</p>
                 </div>
               ))}
@@ -133,13 +133,13 @@ export default function App() {
 
         {activeTab === 'dashboard' && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border-subtle)', pb: '16px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #E5E5E5', paddingBottom: '16px' }}>
               <div>
-                <span style={{ fontSize: '0.8rem', color: 'var(--primary-500)', fontWeight: 700 }}>WORKSPACE</span>
+                <span style={{ fontSize: '0.8rem', color: '#111111', fontWeight: 700 }}>WORKSPACE</span>
                 <h2 style={{ fontSize: '1.6rem' }}>Role-Based Command Center</h2>
               </div>
-              <div style={{ padding: '6px 16px', background: 'var(--bg-surface)', borderRadius: '8px', fontSize: '0.85rem', border: '1px solid var(--border-subtle)' }}>
-                Active Role: <strong style={{ color: '#818cf8' }}>{currentRole}</strong>
+              <div style={{ padding: '6px 16px', background: '#FFFFFF', borderRadius: '8px', fontSize: '0.85rem', border: '1px solid #E5E5E5' }}>
+                Active Role: <strong style={{ color: '#111111' }}>{currentRole}</strong>
               </div>
             </div>
             {renderRoleDashboard()}

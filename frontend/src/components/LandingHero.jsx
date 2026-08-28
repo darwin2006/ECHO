@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, ArrowRight, Shield, Cpu, Users, Building2, Layers, CheckCircle2, PlayCircle, PlusCircle } from 'lucide-react';
+import { PlayCircle, PlusCircle } from 'lucide-react';
 import { api } from '../services/api';
 
 export default function LandingHero({ onLaunchDemo, onOpenSubmit }) {
@@ -30,11 +30,11 @@ export default function LandingHero({ onLaunchDemo, onOpenSubmit }) {
   }, []);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '56px', padding: '24px 0' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '48px', padding: '16px 0' }}>
       
       {/* Main Hero Banner */}
       <div style={{ textAlign: 'center', maxWidth: '920px', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
-        <h1 className="hero-heading" style={{ fontSize: '3.4rem', lineHeight: 1.15, fontWeight: 800, background: 'linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #818cf8 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+        <h1 className="hero-heading" style={{ fontSize: '3.4rem', lineHeight: 1.15, fontWeight: 800, color: '#111111' }}>
           Turn Societal Challenges Into Collaborative Solutions
         </h1>
 
@@ -53,7 +53,7 @@ export default function LandingHero({ onLaunchDemo, onOpenSubmit }) {
       </div>
 
       {/* Primary Value Flow Stepper */}
-      <div className="glass-panel" style={{ padding: '24px', border: '1px solid var(--border-glow)' }}>
+      <div className="glass-panel" style={{ padding: '24px', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
         <h3 style={{ textAlign: 'center', fontSize: '1.1rem', marginBottom: '20px', color: 'var(--text-secondary)' }}>The ECHO End-to-End Value Flow</h3>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '12px', textAlign: 'center' }}>
           {[
@@ -65,9 +65,9 @@ export default function LandingHero({ onLaunchDemo, onOpenSubmit }) {
             { step: '06', title: 'Industry', desc: 'Sponsorship' },
             { step: '07', title: 'Impact', desc: 'State Scaling' },
           ].map((item, idx) => (
-            <div key={idx} style={{ background: 'var(--bg-surface)', padding: '16px 10px', borderRadius: '10px', border: '1px solid var(--border-subtle)' }}>
-              <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#818cf8' }}>{item.step}</div>
-              <div style={{ fontSize: '0.95rem', fontWeight: 700, margin: '2px 0' }}>{item.title}</div>
+            <div key={idx} style={{ background: '#F7F7F7', padding: '16px 10px', borderRadius: '8px', border: '1px solid #E5E5E5' }}>
+              <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#111111' }}>{item.step}</div>
+              <div style={{ fontSize: '0.95rem', fontWeight: 700, margin: '2px 0', color: '#111111' }}>{item.title}</div>
               <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>{item.desc}</div>
             </div>
           ))}
@@ -76,28 +76,28 @@ export default function LandingHero({ onLaunchDemo, onOpenSubmit }) {
 
       {/* Live Statistics Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
-        <div className="glass-panel" style={{ padding: '20px', textAlign: 'center' }}>
+        <div className="glass-panel" style={{ padding: '20px', textAlign: 'center', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
           <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Problems Crowdsourced</span>
-          <div style={{ fontSize: '2.2rem', fontWeight: 800, color: '#6366f1', margin: '4px 0' }}>{stats.problemsCount}</div>
-          <span style={{ fontSize: '0.75rem', color: '#10b981' }}>Active Community Submissions</span>
+          <div style={{ fontSize: '2.2rem', fontWeight: 800, color: '#111111', margin: '4px 0' }}>{stats.problemsCount}</div>
+          <span style={{ fontSize: '0.75rem', color: '#555555' }}>Active Community Submissions</span>
         </div>
 
-        <div className="glass-panel" style={{ padding: '20px', textAlign: 'center' }}>
+        <div className="glass-panel" style={{ padding: '20px', textAlign: 'center', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
           <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Universities Connected</span>
-          <div style={{ fontSize: '2.2rem', fontWeight: 800, color: '#06b6d4', margin: '4px 0' }}>{stats.universitiesCount}</div>
-          <span style={{ fontSize: '0.75rem', color: '#67e8f9' }}>Partner Campuses</span>
+          <div style={{ fontSize: '2.2rem', fontWeight: 800, color: '#111111', margin: '4px 0' }}>{stats.universitiesCount}</div>
+          <span style={{ fontSize: '0.75rem', color: '#555555' }}>Partner Campuses</span>
         </div>
 
-        <div className="glass-panel" style={{ padding: '20px', textAlign: 'center' }}>
+        <div className="glass-panel" style={{ padding: '20px', textAlign: 'center', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
           <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Active Solution Projects</span>
-          <div style={{ fontSize: '2.2rem', fontWeight: 800, color: '#10b981', margin: '4px 0' }}>{stats.projectsCount}</div>
-          <span style={{ fontSize: '0.75rem', color: '#6ee7b7' }}>6 Milestones Initialized</span>
+          <div style={{ fontSize: '2.2rem', fontWeight: 800, color: '#111111', margin: '4px 0' }}>{stats.projectsCount}</div>
+          <span style={{ fontSize: '0.75rem', color: '#555555' }}>6 Milestones Initialized</span>
         </div>
 
-        <div className="glass-panel" style={{ padding: '20px', textAlign: 'center' }}>
+        <div className="glass-panel" style={{ padding: '20px', textAlign: 'center', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
           <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>AI Priority Analysis</span>
-          <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#c084fc', margin: '8px 0' }}>Multi-Factor AI</div>
-          <span style={{ fontSize: '0.75rem', color: '#a78bfa' }}>Prioritization Engine</span>
+          <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#111111', margin: '8px 0' }}>Multi-Factor AI</div>
+          <span style={{ fontSize: '0.75rem', color: '#555555' }}>Prioritization Engine</span>
         </div>
       </div>
 

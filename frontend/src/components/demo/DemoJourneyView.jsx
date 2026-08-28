@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, Cpu, Award, Users, ArrowRight, ArrowLeft, CheckCircle2, ShieldCheck, Handshake, Sparkles, Building2, Layers, CheckSquare, HelpCircle, FileText, ChevronRight, BarChart3, TrendingUp } from 'lucide-react';
+import { Send, Cpu, Award, Users, ArrowLeft, ShieldCheck, Handshake, Sparkles, CheckSquare, HelpCircle, TrendingUp } from 'lucide-react';
 import DemoStepper from '../DemoStepper';
 import { api } from '../../services/api';
 
@@ -230,7 +230,7 @@ export default function DemoJourneyView({ onFlowComplete }) {
       <DemoStepper currentStep={step} setStep={setStep} maxReachedStep={maxReachedStep} />
 
       {error && (
-        <div style={{ padding: '16px 24px', background: 'rgba(244, 63, 94, 0.15)', border: '1px solid rgba(244, 63, 94, 0.35)', borderRadius: '12px', color: '#fda4af', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <div style={{ padding: '16px 24px', background: '#FEF2F2', border: '1px solid #FCA5A5', borderRadius: '8px', color: '#991B1B', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
           <span>⚠️ {error}</span>
         </div>
       )}
@@ -239,10 +239,10 @@ export default function DemoJourneyView({ onFlowComplete }) {
       {/* STAGE 01: CITIZEN PROBLEM SUBMISSION */}
       {/* ========================================================================= */}
       {step === 1 && (
-        <div className="glass-panel animate-fade-in" style={{ padding: '32px' }}>
+        <div className="glass-panel animate-fade-in" style={{ padding: '32px', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
             <div>
-              <span className="badge badge-medium">Stage 01 — Crowdsource Entry</span>
+              <span className="badge">Stage 01 — Crowdsource Entry</span>
               <h2 style={{ fontSize: '1.6rem', marginTop: '6px' }}>Citizen & Community Problem Submission</h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginTop: '2px' }}>
                 Enter societal issue details in English or Tamil. Submitting triggers real-time semantic analysis and priority scoring.
@@ -268,7 +268,7 @@ export default function DemoJourneyView({ onFlowComplete }) {
                 required 
                 value={formData.title} 
                 onChange={e => setFormData({ ...formData, title: e.target.value })}
-                style={{ width: '100%', background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', padding: '12px 16px', borderRadius: '8px', color: '#fff', fontSize: '0.95rem' }}
+                style={{ width: '100%', background: '#FFFFFF', border: '1px solid #E5E5E5', padding: '12px 16px', borderRadius: '8px', color: '#111111', fontSize: '0.95rem' }}
               />
             </div>
 
@@ -279,14 +279,14 @@ export default function DemoJourneyView({ onFlowComplete }) {
                 required 
                 value={formData.description} 
                 onChange={e => setFormData({ ...formData, description: e.target.value })}
-                style={{ width: '100%', background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', padding: '12px 16px', borderRadius: '8px', color: '#fff', fontSize: '0.95rem' }}
+                style={{ width: '100%', background: '#FFFFFF', border: '1px solid #E5E5E5', padding: '12px 16px', borderRadius: '8px', color: '#111111', fontSize: '0.95rem' }}
               />
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '16px' }}>
               <div>
                 <label style={{ display: 'block', fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '4px' }}>Category</label>
-                <select value={formData.category} onChange={e => setFormData({ ...formData, category: e.target.value })} style={{ width: '100%', background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', padding: '10px', borderRadius: '6px', color: '#fff' }}>
+                <select value={formData.category} onChange={e => setFormData({ ...formData, category: e.target.value })} style={{ width: '100%', background: '#FFFFFF', border: '1px solid #E5E5E5', padding: '10px', borderRadius: '6px', color: '#111111' }}>
                   <option value="Environment">Environment & Drainage</option>
                   <option value="Water & Sanitation">Water & Sanitation</option>
                   <option value="Education">Education & Rural Tech</option>
@@ -296,17 +296,17 @@ export default function DemoJourneyView({ onFlowComplete }) {
 
               <div>
                 <label style={{ display: 'block', fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '4px' }}>Locality / District</label>
-                <input type="text" value={formData.district} onChange={e => setFormData({ ...formData, district: e.target.value })} style={{ width: '100%', background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', padding: '10px', borderRadius: '6px', color: '#fff' }} />
+                <input type="text" value={formData.district} onChange={e => setFormData({ ...formData, district: e.target.value })} style={{ width: '100%', background: '#FFFFFF', border: '1px solid #E5E5E5', padding: '10px', borderRadius: '6px', color: '#111111' }} />
               </div>
 
               <div>
                 <label style={{ display: 'block', fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '4px' }}>State</label>
-                <input type="text" value={formData.state} onChange={e => setFormData({ ...formData, state: e.target.value })} style={{ width: '100%', background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', padding: '10px', borderRadius: '6px', color: '#fff' }} />
+                <input type="text" value={formData.state} onChange={e => setFormData({ ...formData, state: e.target.value })} style={{ width: '100%', background: '#FFFFFF', border: '1px solid #E5E5E5', padding: '10px', borderRadius: '6px', color: '#111111' }} />
               </div>
 
               <div>
                 <label style={{ display: 'block', fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '4px' }}>Language</label>
-                <select value={formData.language} onChange={e => setFormData({ ...formData, language: e.target.value })} style={{ width: '100%', background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', padding: '10px', borderRadius: '6px', color: '#fff' }}>
+                <select value={formData.language} onChange={e => setFormData({ ...formData, language: e.target.value })} style={{ width: '100%', background: '#FFFFFF', border: '1px solid #E5E5E5', padding: '10px', borderRadius: '6px', color: '#111111' }}>
                   <option value="en">English</option>
                   <option value="ta">Tamil (தமிழ்)</option>
                 </select>
@@ -324,17 +324,17 @@ export default function DemoJourneyView({ onFlowComplete }) {
       {/* STAGE 02: REAL AI ANALYSIS RESULT */}
       {/* ========================================================================= */}
       {step === 2 && aiAnalysis && (
-        <div className="glass-panel animate-fade-in" style={{ padding: '32px' }}>
+        <div className="glass-panel animate-fade-in" style={{ padding: '32px', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
             <div>
-              <span className="badge badge-success">Stage 02 — Intelligent Priority Assessment</span>
+              <span className="badge">Stage 02 — Intelligent Priority Assessment</span>
               <h2 style={{ fontSize: '1.6rem', marginTop: '6px' }}>AI Priority & Duplicate Analysis</h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
                 Multilingual semantic processing, duplicate detection & 7-factor priority assessment score.
               </p>
             </div>
             <div style={{ textAlign: 'right' }}>
-              <span className={`badge badge-${aiAnalysis.priority_level.toLowerCase()}`} style={{ fontSize: '1.1rem', padding: '8px 16px' }}>
+              <span className="badge badge-high" style={{ fontSize: '1.1rem', padding: '8px 16px' }}>
                 Priority Score: {aiAnalysis.priority_score} / 100 ({aiAnalysis.priority_level})
               </span>
             </div>
@@ -343,34 +343,34 @@ export default function DemoJourneyView({ onFlowComplete }) {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '24px' }}>
             
             {/* 7-Factor Priority Breakdown */}
-            <div style={{ background: 'var(--bg-card)', padding: '20px', borderRadius: '12px', border: '1px solid var(--border-subtle)' }}>
-              <h3 style={{ fontSize: '1.05rem', color: '#818cf8', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ background: '#FFFFFF', padding: '20px', borderRadius: '8px', border: '1px solid #E5E5E5' }}>
+              <h3 style={{ fontSize: '1.05rem', color: '#111111', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <Sparkles size={18} /> 7-Factor Priority Breakdown
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.88rem' }}>
                 {Object.entries(aiAnalysis.priority_breakdown || {}).map(([factor, score]) => (
-                  <div key={factor} style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '6px' }}>
+                  <div key={factor} style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #EEEEEE', paddingBottom: '6px' }}>
                     <span style={{ color: 'var(--text-secondary)', textTransform: 'capitalize' }}>{factor.replace('_contrib', '').replace('_penalty', ' penalty')}</span>
-                    <strong style={{ color: '#10b981' }}>+{score}</strong>
+                    <strong style={{ color: '#111111' }}>+{score}</strong>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Semantic Duplicate Check */}
-            <div style={{ background: 'var(--bg-card)', padding: '20px', borderRadius: '12px', border: '1px solid var(--border-subtle)' }}>
-              <h3 style={{ fontSize: '1.05rem', color: '#06b6d4', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ background: '#FFFFFF', padding: '20px', borderRadius: '8px', border: '1px solid #E5E5E5' }}>
+              <h3 style={{ fontSize: '1.05rem', color: '#111111', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <Cpu size={18} /> Semantic Analysis & Duplicate Check
               </h3>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.88rem', color: '#cbd5e1' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.88rem', color: '#111111' }}>
                 <div>Analysis Engine: <strong>Multilingual Semantic Priority Engine</strong></div>
-                <div>Duplicate Status: <strong style={{ color: aiAnalysis.duplicate_relationship === 'NOT_DUPLICATE' ? '#10b981' : '#f59e0b' }}>{aiAnalysis.duplicate_relationship}</strong></div>
+                <div>Duplicate Status: <strong>{aiAnalysis.duplicate_relationship}</strong></div>
                 <div>Max Semantic Similarity: <strong>{(aiAnalysis.max_similarity * 100).toFixed(1)}%</strong></div>
                 <div style={{ marginTop: '8px' }}>
                   <span style={{ color: 'var(--text-muted)' }}>Required Technical Domains:</span>
                   <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: '6px' }}>
                     {aiAnalysis.extracted_skills.map((s, idx) => (
-                      <span key={idx} style={{ background: 'rgba(99, 102, 241, 0.15)', color: '#a5b4fc', border: '1px solid rgba(99, 102, 241, 0.3)', padding: '3px 8px', borderRadius: '4px', fontSize: '0.78rem' }}>
+                      <span key={idx} style={{ background: '#F3F3F3', color: '#111111', border: '1px solid #E5E5E5', padding: '3px 8px', borderRadius: '4px', fontSize: '0.78rem' }}>
                         {s}
                       </span>
                     ))}
@@ -382,11 +382,11 @@ export default function DemoJourneyView({ onFlowComplete }) {
           </div>
 
           {/* Grounded Explainability Card */}
-          <div style={{ background: 'rgba(99, 102, 241, 0.08)', border: '1px solid rgba(99, 102, 241, 0.25)', padding: '20px', borderRadius: '12px', marginBottom: '24px' }}>
-            <h4 style={{ fontSize: '0.95rem', color: '#a5b4fc', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{ background: '#F9F9F9', border: '1px solid #E5E5E5', padding: '20px', borderRadius: '8px', marginBottom: '24px' }}>
+            <h4 style={{ fontSize: '0.95rem', color: '#111111', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
               <HelpCircle size={16} /> How ECHO Decided This Priority:
             </h4>
-            <p style={{ fontSize: '0.88rem', color: '#cbd5e1', lineHeight: '1.6' }}>
+            <p style={{ fontSize: '0.88rem', color: '#555555', lineHeight: '1.6' }}>
               The problem was evaluated by the 7-factor priority engine on backend. High severity ({formData.severity}/5), strong community support ({formData.community_support_count} upvotes), and government policy alignment added <strong>+{aiAnalysis.priority_score} points</strong>, while semantic duplicate search confirmed a <strong>{aiAnalysis.duplicate_relationship}</strong> relationship.
             </p>
           </div>
@@ -406,10 +406,10 @@ export default function DemoJourneyView({ onFlowComplete }) {
       {/* STAGE 03: UNIVERSITY MATCHING */}
       {/* ========================================================================= */}
       {step === 3 && (
-        <div className="glass-panel animate-fade-in" style={{ padding: '32px' }}>
+        <div className="glass-panel animate-fade-in" style={{ padding: '32px', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
             <div>
-              <span className="badge badge-success">Stage 03 — Multi-Factor University Matching</span>
+              <span className="badge">Stage 03 — Multi-Factor University Matching</span>
               <h2 style={{ fontSize: '1.6rem', marginTop: '6px' }}>16-Factor Capability vs Practical Capacity Matching</h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
                 Rule: "Best Match ≠ Highest Single Skill Score". Evaluates skill coverage, domain rating, faculty availability, and practical workload capacity.
@@ -427,35 +427,33 @@ export default function DemoJourneyView({ onFlowComplete }) {
                   key={univ.university_id} 
                   onClick={() => setSelectedUniversity(univ)}
                   style={{
-                    background: isSelected 
-                      ? 'linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(17, 24, 39, 0.8) 100%)' 
-                      : 'var(--bg-card)',
+                    background: '#FFFFFF',
                     border: isSelected 
-                      ? '2px solid var(--primary-500)' 
-                      : '1px solid var(--border-subtle)',
-                    boxShadow: isSelected ? '0 0 25px rgba(99, 102, 241, 0.25)' : 'none',
+                      ? '2px solid #111111' 
+                      : '1px solid #E5E5E5',
+                    boxShadow: isSelected ? '0 2px 8px rgba(0, 0, 0, 0.08)' : 'none',
                     padding: '24px',
-                    borderRadius: '12px',
+                    borderRadius: '8px',
                     cursor: 'pointer',
-                    transition: 'all 0.25s ease'
+                    transition: 'all 0.15s ease'
                   }}
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
                     <div>
-                      <span className={`badge ${isBestMatch ? 'badge-success' : 'badge-medium'}`}>
+                      <span className="badge" style={{ background: isBestMatch ? '#111111' : '#F3F3F3', color: isBestMatch ? '#FFFFFF' : '#111111' }}>
                         {univ.rank_title}
                       </span>
                       <h3 style={{ fontSize: '1.25rem', marginTop: '6px' }}>{univ.university_name}</h3>
                     </div>
                     <div style={{ textAlign: 'right' }}>
-                      <span style={{ fontSize: '1.6rem', fontWeight: 800, color: '#10b981' }}>{univ.overall_match_score}%</span>
+                      <span style={{ fontSize: '1.6rem', fontWeight: 800, color: '#111111' }}>{univ.overall_match_score}%</span>
                       <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Match Score</div>
                     </div>
                   </div>
 
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '12px' }}>
                     {univ.match_reasons.map((reason, idx) => (
-                      <span key={idx} style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', padding: '4px 10px', borderRadius: '6px', fontSize: '0.8rem', color: '#cbd5e1' }}>
+                      <span key={idx} style={{ background: '#F3F3F3', border: '1px solid #E5E5E5', padding: '4px 10px', borderRadius: '6px', fontSize: '0.8rem', color: '#555555' }}>
                         ✓ {reason}
                       </span>
                     ))}
@@ -480,9 +478,9 @@ export default function DemoJourneyView({ onFlowComplete }) {
       {/* STAGE 04: TEAM FORMATION */}
       {/* ========================================================================= */}
       {step === 4 && (
-        <div className="glass-panel animate-fade-in" style={{ padding: '32px' }}>
+        <div className="glass-panel animate-fade-in" style={{ padding: '32px', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
           <div style={{ marginBottom: '24px' }}>
-            <span className="badge badge-success">Stage 04 — Campus Team Formation</span>
+            <span className="badge">Stage 04 — Campus Team Formation</span>
             <h2 style={{ fontSize: '1.6rem', marginTop: '6px' }}>Multidisciplinary Team Formation</h2>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
               Select faculty mentor and student innovators from seeded profiles for <strong>{selectedUniversity?.university_name}</strong>.
@@ -492,8 +490,8 @@ export default function DemoJourneyView({ onFlowComplete }) {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '24px' }}>
             
             {/* Faculty Mentor Selection */}
-            <div style={{ background: 'var(--bg-card)', padding: '20px', borderRadius: '12px', border: '1px solid var(--border-subtle)' }}>
-              <h3 style={{ fontSize: '1.1rem', marginBottom: '12px', color: '#c084fc', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ background: '#FFFFFF', padding: '20px', borderRadius: '8px', border: '1px solid #E5E5E5' }}>
+              <h3 style={{ fontSize: '1.1rem', marginBottom: '12px', color: '#111111', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <Users size={18} /> Select Faculty Mentor
               </h3>
               {candidates.faculty_mentors.map(f => (
@@ -504,17 +502,17 @@ export default function DemoJourneyView({ onFlowComplete }) {
                     alignItems: 'center',
                     gap: '12px',
                     padding: '14px',
-                    background: selectedFacultyId == f.user_id ? 'rgba(168, 85, 247, 0.15)' : 'var(--bg-surface)',
-                    border: selectedFacultyId == f.user_id ? '1px solid #c084fc' : '1px solid var(--border-subtle)',
-                    borderRadius: '10px',
+                    background: selectedFacultyId == f.user_id ? '#F3F3F3' : '#FFFFFF',
+                    border: selectedFacultyId == f.user_id ? '1px solid #111111' : '1px solid #E5E5E5',
+                    borderRadius: '8px',
                     cursor: 'pointer',
                     marginBottom: '8px',
-                    transition: 'all 0.2s ease'
+                    transition: 'all 0.15s ease'
                   }}
                 >
                   <input type="radio" name="faculty" value={f.user_id} checked={selectedFacultyId == f.user_id} onChange={e => setSelectedFacultyId(e.target.value)} />
                   <div>
-                    <strong style={{ fontSize: '0.95rem' }}>{f.full_name}</strong>
+                    <strong style={{ fontSize: '0.95rem', color: '#111111' }}>{f.full_name}</strong>
                     <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{f.designation} — {f.department_name}</div>
                   </div>
                 </label>
@@ -522,8 +520,8 @@ export default function DemoJourneyView({ onFlowComplete }) {
             </div>
 
             {/* Student Team Member Selection */}
-            <div style={{ background: 'var(--bg-card)', padding: '20px', borderRadius: '12px', border: '1px solid var(--border-subtle)' }}>
-              <h3 style={{ fontSize: '1.1rem', marginBottom: '12px', color: '#22d3ee', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ background: '#FFFFFF', padding: '20px', borderRadius: '8px', border: '1px solid #E5E5E5' }}>
+              <h3 style={{ fontSize: '1.1rem', marginBottom: '12px', color: '#111111', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <Users size={18} /> Select Student Team Members
               </h3>
               {candidates.students.map(s => (
@@ -534,12 +532,12 @@ export default function DemoJourneyView({ onFlowComplete }) {
                     alignItems: 'center',
                     gap: '12px',
                     padding: '14px',
-                    background: selectedStudentIds.includes(s.user_id) ? 'rgba(6, 182, 212, 0.15)' : 'var(--bg-surface)',
-                    border: selectedStudentIds.includes(s.user_id) ? '1px solid #22d3ee' : '1px solid var(--border-subtle)',
-                    borderRadius: '10px',
+                    background: selectedStudentIds.includes(s.user_id) ? '#F3F3F3' : '#FFFFFF',
+                    border: selectedStudentIds.includes(s.user_id) ? '1px solid #111111' : '1px solid #E5E5E5',
+                    borderRadius: '8px',
                     cursor: 'pointer',
                     marginBottom: '8px',
-                    transition: 'all 0.2s ease'
+                    transition: 'all 0.15s ease'
                   }}
                 >
                   <input 
@@ -552,7 +550,7 @@ export default function DemoJourneyView({ onFlowComplete }) {
                     }} 
                   />
                   <div>
-                    <strong style={{ fontSize: '0.95rem' }}>{s.full_name}</strong>
+                    <strong style={{ fontSize: '0.95rem', color: '#111111' }}>{s.full_name}</strong>
                     <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Year {s.academic_year} — {s.department_name}</div>
                   </div>
                 </label>
@@ -576,24 +574,24 @@ export default function DemoJourneyView({ onFlowComplete }) {
       {/* STAGE 05: PROJECT CREATION */}
       {/* ========================================================================= */}
       {step === 5 && projectData && (
-        <div className="glass-panel animate-fade-in" style={{ padding: '32px' }}>
+        <div className="glass-panel animate-fade-in" style={{ padding: '32px', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
             <div>
-              <span className="badge badge-success">Stage 05 — Persisted in SQLite DB</span>
+              <span className="badge">Stage 05 — Persisted in SQLite DB</span>
               <h2 style={{ fontSize: '1.6rem', marginTop: '6px' }}>Solution Project Instantiated</h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Project record created, team linked, and 6 milestones initialized in database.</p>
             </div>
             <div style={{ textAlign: 'right' }}>
-              <span style={{ fontSize: '1.4rem', fontWeight: 800, color: '#818cf8' }}>Project #{projectData.project_id}</span>
+              <span style={{ fontSize: '1.4rem', fontWeight: 800, color: '#111111' }}>Project #{projectData.project_id}</span>
               <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Status: {projectData.status}</div>
             </div>
           </div>
 
-          <div style={{ background: 'var(--bg-card)', padding: '24px', borderRadius: '12px', border: '1px solid var(--border-subtle)', marginBottom: '24px' }}>
+          <div style={{ background: '#FFFFFF', padding: '24px', borderRadius: '8px', border: '1px solid #E5E5E5', marginBottom: '24px' }}>
             <h3 style={{ fontSize: '1.25rem', marginBottom: '8px' }}>{projectData.title}</h3>
             <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '16px' }}>{projectData.description}</p>
             
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px', fontSize: '0.88rem', color: '#cbd5e1' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px', fontSize: '0.88rem', color: '#111111' }}>
               <div>Campus: <strong>{projectData.university_name}</strong></div>
               <div>Faculty Mentor: <strong>{projectData.team?.faculty_mentor?.full_name || 'Dr. S. Arumugam'}</strong></div>
               <div>Team Members: <strong>{projectData.team?.students?.length || 1} Student Innovator(s)</strong></div>
@@ -615,15 +613,15 @@ export default function DemoJourneyView({ onFlowComplete }) {
       {/* STAGE 06: MILESTONE WORKFLOW */}
       {/* ========================================================================= */}
       {step === 6 && projectData && (
-        <div className="glass-panel animate-fade-in" style={{ padding: '32px' }}>
+        <div className="glass-panel animate-fade-in" style={{ padding: '32px', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
             <div>
-              <span className="badge badge-success">Stage 06 — Interactive Milestone Execution</span>
+              <span className="badge">Stage 06 — Interactive Milestone Execution</span>
               <h2 style={{ fontSize: '1.6rem', marginTop: '6px' }}>Project Milestone Execution & Progress Tracking</h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Advance milestones to calculate overall project progress live in database.</p>
             </div>
             <div style={{ textAlign: 'right' }}>
-              <span style={{ fontSize: '1.8rem', fontWeight: 800, color: '#10b981' }}>{projectData.progress_percentage}%</span>
+              <span style={{ fontSize: '1.8rem', fontWeight: 800, color: '#111111' }}>{projectData.progress_percentage}%</span>
               <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Overall Progress</div>
             </div>
           </div>
@@ -637,14 +635,14 @@ export default function DemoJourneyView({ onFlowComplete }) {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '24px' }}>
             {milestones.map((m) => (
-              <div key={m.milestone_id} style={{ background: 'var(--bg-card)', padding: '16px 20px', borderRadius: '10px', border: '1px solid var(--border-subtle)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div key={m.milestone_id} style={{ background: '#FFFFFF', padding: '16px 20px', borderRadius: '8px', border: '1px solid #E5E5E5', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
-                  <h4 style={{ fontSize: '1rem', color: '#f8fafc' }}>{m.title}</h4>
+                  <h4 style={{ fontSize: '1rem', color: '#111111' }}>{m.title}</h4>
                   <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{m.description}</p>
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <span className={`badge badge-${m.status === 'COMPLETED' ? 'success' : m.status === 'IN_PROGRESS' ? 'high' : 'medium'}`}>
+                  <span className="badge">
                     {m.status}
                   </span>
                   {m.status !== 'COMPLETED' && (
@@ -672,20 +670,20 @@ export default function DemoJourneyView({ onFlowComplete }) {
       {/* STAGE 07: INDUSTRY COLLABORATION */}
       {/* ========================================================================= */}
       {step === 7 && (
-        <div className="glass-panel-glow animate-fade-in" style={{ padding: '40px', textAlign: 'center' }}>
-          <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'rgba(16, 185, 129, 0.2)', border: '1px solid rgba(16, 185, 129, 0.4)', color: '#10b981', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+        <div className="glass-panel animate-fade-in" style={{ padding: '40px', textAlign: 'center', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
+          <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: '#F3F3F3', border: '1px solid #E5E5E5', color: '#111111', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
             <Handshake size={36} />
           </div>
 
-          <span className="badge badge-success" style={{ marginBottom: '8px' }}>Stage 07 — Sponsorship Linked</span>
+          <span className="badge" style={{ marginBottom: '8px' }}>Stage 07 — Sponsorship Linked</span>
           <h2 style={{ fontSize: '2.2rem', margin: '8px 0' }}>Industry Collaboration Established!</h2>
           <p style={{ color: 'var(--text-secondary)', maxWidth: '650px', margin: '0 auto 24px auto', fontSize: '1.05rem' }}>
             <strong>WaterTech Sensor Systems India</strong> has partnered with <strong>{selectedUniversity?.university_name}</strong> to sponsor hardware sensors, telemetry cloud APIs, and technical mentorship for Project #{projectData?.project_id}.
           </p>
 
-          <div style={{ background: 'var(--bg-card)', padding: '24px', borderRadius: '12px', maxWidth: '700px', margin: '0 auto 28px auto', textAlign: 'left', border: '1px solid var(--border-subtle)' }}>
-            <h4 style={{ fontSize: '1rem', color: '#fbbf24', marginBottom: '12px' }}>Sponsorship & Resource Commitment Summary:</h4>
-            <ul style={{ fontSize: '0.9rem', color: '#cbd5e1', display: 'flex', flexDirection: 'column', gap: '8px', paddingLeft: '20px' }}>
+          <div style={{ background: '#F9F9F9', padding: '24px', borderRadius: '8px', maxWidth: '700px', margin: '0 auto 28px auto', textAlign: 'left', border: '1px solid #E5E5E5' }}>
+            <h4 style={{ fontSize: '1rem', color: '#111111', marginBottom: '12px' }}>Sponsorship & Resource Commitment Summary:</h4>
+            <ul style={{ fontSize: '0.9rem', color: '#555555', display: 'flex', flexDirection: 'column', gap: '8px', paddingLeft: '20px' }}>
               <li>✓ IoT Hardware Waterlog Sensors & Telemetry Gateways</li>
               <li>✓ Real-Time Cloud Telemetry API Endpoints</li>
               <li>✓ Dedicated Corporate Technical Mentor Guidance</li>
@@ -698,7 +696,7 @@ export default function DemoJourneyView({ onFlowComplete }) {
               <ArrowLeft size={16} /> Back to Milestones
             </button>
             <button className="btn-primary" style={{ padding: '14px 32px', fontSize: '1rem' }} onClick={() => updateStep(8)}>
-              <BarChart3 size={18} /> View Final Impact & Outcome Measurement →
+              <TrendingUp size={18} /> View Final Impact & Outcome Measurement →
             </button>
           </div>
         </div>
@@ -708,12 +706,12 @@ export default function DemoJourneyView({ onFlowComplete }) {
       {/* STAGE 08: IMPACT & OUTCOME MEASUREMENT */}
       {/* ========================================================================= */}
       {step === 8 && (
-        <div className="glass-panel-glow animate-fade-in" style={{ padding: '40px', textAlign: 'center' }}>
-          <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'rgba(99, 102, 241, 0.2)', border: '1px solid rgba(99, 102, 241, 0.4)', color: '#818cf8', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+        <div className="glass-panel animate-fade-in" style={{ padding: '40px', textAlign: 'center', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
+          <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: '#F3F3F3', border: '1px solid #E5E5E5', color: '#111111', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
             <TrendingUp size={36} />
           </div>
 
-          <span className="badge badge-success" style={{ marginBottom: '8px' }}>Stage 08 — Final Journey Outcome</span>
+          <span className="badge" style={{ marginBottom: '8px' }}>Stage 08 — Final Journey Outcome</span>
           <h2 style={{ fontSize: '2.2rem', margin: '8px 0' }}>End-to-End Societal Impact Verified!</h2>
           <p style={{ color: 'var(--text-secondary)', maxWidth: '700px', margin: '0 auto 24px auto', fontSize: '1.05rem' }}>
             From community problem crowdsourcing in <strong>{formData.district}</strong> to Real AI prioritization, 16-factor university matching at <strong>{selectedUniversity?.university_name}</strong>, multidisciplinary team allocation, 6 milestone executions, and industry hardware sponsorship.
@@ -721,28 +719,28 @@ export default function DemoJourneyView({ onFlowComplete }) {
 
           {/* Impact Stats Summary */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px', maxWidth: '800px', margin: '0 auto 28px auto', textAlign: 'left' }}>
-            <div className="glass-panel" style={{ padding: '20px' }}>
+            <div className="glass-panel" style={{ padding: '20px', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
               <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Estimated Local Impact</div>
-              <div style={{ fontSize: '1.8rem', fontWeight: 800, color: '#10b981' }}>15,000+</div>
-              <div style={{ fontSize: '0.75rem', color: '#6ee7b7' }}>Citizens Benefited</div>
+              <div style={{ fontSize: '1.8rem', fontWeight: 800, color: '#111111' }}>15,000+</div>
+              <div style={{ fontSize: '0.75rem', color: '#555555' }}>Citizens Benefited</div>
             </div>
 
-            <div className="glass-panel" style={{ padding: '20px' }}>
+            <div className="glass-panel" style={{ padding: '20px', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
               <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Real AI Priority</div>
-              <div style={{ fontSize: '1.8rem', fontWeight: 800, color: '#818cf8' }}>{aiAnalysis?.priority_score}/100</div>
-              <div style={{ fontSize: '0.75rem', color: '#a5b4fc' }}>{aiAnalysis?.priority_level} Level</div>
+              <div style={{ fontSize: '1.8rem', fontWeight: 800, color: '#111111' }}>{aiAnalysis?.priority_score}/100</div>
+              <div style={{ fontSize: '0.75rem', color: '#555555' }}>{aiAnalysis?.priority_level} Level</div>
             </div>
 
-            <div className="glass-panel" style={{ padding: '20px' }}>
+            <div className="glass-panel" style={{ padding: '20px', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
               <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Campus Match Score</div>
-              <div style={{ fontSize: '1.8rem', fontWeight: 800, color: '#06b6d4' }}>{selectedUniversity?.overall_match_score}%</div>
-              <div style={{ fontSize: '0.75rem', color: '#67e8f9' }}>16-Factor Verified</div>
+              <div style={{ fontSize: '1.8rem', fontWeight: 800, color: '#111111' }}>{selectedUniversity?.overall_match_score}%</div>
+              <div style={{ fontSize: '0.75rem', color: '#555555' }}>16-Factor Verified</div>
             </div>
 
-            <div className="glass-panel" style={{ padding: '20px' }}>
+            <div className="glass-panel" style={{ padding: '20px', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
               <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Sponsor Hardware</div>
-              <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#fbbf24', marginTop: '6px' }}>WaterTech India</div>
-              <div style={{ fontSize: '0.75rem', color: '#fde68a' }}>IoT Telemetry Gateways</div>
+              <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#111111', marginTop: '6px' }}>WaterTech India</div>
+              <div style={{ fontSize: '0.75rem', color: '#555555' }}>IoT Telemetry Gateways</div>
             </div>
           </div>
 

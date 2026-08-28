@@ -14,7 +14,7 @@ const STAGES = [
 
 export default function DemoStepper({ currentStep, setStep, maxReachedStep }) {
   return (
-    <div className="glass-panel" style={{ padding: '16px 20px', marginBottom: '24px', border: '1px solid var(--border-glow)' }}>
+    <div className="glass-panel" style={{ padding: '16px 20px', marginBottom: '24px', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', overflowX: 'auto', gap: '8px', paddingBottom: '4px' }}>
         {STAGES.map((s, idx) => {
           const isActive = currentStep === s.id;
@@ -31,21 +31,20 @@ export default function DemoStepper({ currentStep, setStep, maxReachedStep }) {
                   alignItems: 'center',
                   gap: '8px',
                   padding: '8px 12px',
-                  borderRadius: '12px',
+                  borderRadius: '8px',
                   cursor: isAccessible ? 'pointer' : 'not-allowed',
                   background: isActive 
-                    ? 'linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(67, 56, 202, 0.2) 100%)' 
+                    ? '#111111' 
                     : isCompleted 
-                    ? 'rgba(16, 185, 129, 0.12)' 
-                    : 'rgba(255, 255, 255, 0.02)',
+                    ? '#F3F3F3' 
+                    : '#FFFFFF',
                   border: isActive 
-                    ? '1px solid var(--primary-500)' 
+                    ? '1px solid #111111' 
                     : isCompleted 
-                    ? '1px solid rgba(16, 185, 129, 0.35)' 
-                    : '1px solid var(--border-subtle)',
-                  boxShadow: isActive ? '0 0 20px rgba(99, 102, 241, 0.3)' : 'none',
-                  opacity: isAccessible ? 1 : 0.4,
-                  transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+                    ? '1px solid #E5E5E5' 
+                    : '1px solid #E5E5E5',
+                  opacity: isAccessible ? 1 : 0.45,
+                  transition: 'all 0.15s ease',
                   whiteSpace: 'nowrap'
                 }}
               >
@@ -53,29 +52,28 @@ export default function DemoStepper({ currentStep, setStep, maxReachedStep }) {
                   width: '24px', 
                   height: '24px', 
                   borderRadius: '50%', 
-                  background: isCompleted ? '#10b981' : isActive ? 'var(--primary-500)' : 'var(--bg-surface)', 
-                  color: '#fff', 
+                  background: isActive ? '#FFFFFF' : isCompleted ? '#111111' : '#F3F3F3', 
+                  color: isActive ? '#111111' : isCompleted ? '#FFFFFF' : '#555555', 
                   display: 'flex', 
                   alignItems: 'center', 
                   justifyContent: 'center', 
                   fontSize: '0.75rem', 
-                  fontWeight: 800,
-                  boxShadow: isCompleted ? '0 0 10px rgba(16, 185, 129, 0.4)' : 'none'
+                  fontWeight: 800
                 }}>
-                  {isCompleted ? <CheckCircle2 size={14} /> : s.id}
+                  {isCompleted ? <CheckCircle2 size={14} color="#ffffff" /> : s.id}
                 </div>
                 <div>
-                  <div style={{ fontSize: '0.8rem', fontWeight: 700, color: isActive ? '#f8fafc' : isCompleted ? '#6ee7b7' : 'var(--text-secondary)' }}>
+                  <div style={{ fontSize: '0.8rem', fontWeight: 700, color: isActive ? '#FFFFFF' : '#111111' }}>
                     {s.title}
                   </div>
-                  <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>
+                  <div style={{ fontSize: '0.68rem', color: isActive ? '#CCCCCC' : '#888888' }}>
                     {s.subtitle}
                   </div>
                 </div>
               </div>
 
               {idx < STAGES.length - 1 && (
-                <ChevronRight size={14} style={{ color: idx < currentStep ? '#10b981' : 'var(--text-muted)', flexShrink: 0 }} />
+                <ChevronRight size={14} style={{ color: '#888888', flexShrink: 0 }} />
               )}
             </React.Fragment>
           );

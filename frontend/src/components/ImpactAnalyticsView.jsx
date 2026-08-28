@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BarChart3, TrendingUp, Users, Award, ShieldCheck, Building2, CheckCircle2, MapPin } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import { api } from '../services/api';
 
 export default function ImpactAnalyticsView() {
@@ -23,8 +23,8 @@ export default function ImpactAnalyticsView() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
       
-      <div style={{ borderBottom: '1px solid var(--border-subtle)', paddingBottom: '16px' }}>
-        <span style={{ fontSize: '0.8rem', color: '#10b981', fontWeight: 700, textTransform: 'uppercase' }}>State-Wide Societal Impact</span>
+      <div style={{ borderBottom: '1px solid #E5E5E5', paddingBottom: '16px' }}>
+        <span style={{ fontSize: '0.8rem', color: '#111111', fontWeight: 700, textTransform: 'uppercase' }}>State-Wide Societal Impact</span>
         <h2 style={{ fontSize: '1.8rem', margin: '4px 0' }}>Impact Analytics & Outcome Measurement</h2>
         <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
           Real-time analytics aggregated directly from active backend database records and AI pipeline operations.
@@ -32,7 +32,7 @@ export default function ImpactAnalyticsView() {
       </div>
 
       {loading ? (
-        <div className="glass-panel" style={{ padding: '40px', textAlign: 'center', color: 'var(--text-secondary)' }}>
+        <div className="glass-panel" style={{ padding: '40px', textAlign: 'center', color: 'var(--text-secondary)', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
           Loading real impact metrics from database...
         </div>
       ) : data ? (
@@ -40,36 +40,36 @@ export default function ImpactAnalyticsView() {
           
           {/* Top Key Performance Indicators */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
-            <div className="glass-panel" style={{ padding: '24px' }}>
+            <div className="glass-panel" style={{ padding: '24px', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
               <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Estimated People Impacted</div>
-              <div style={{ fontSize: '2.4rem', fontWeight: 800, color: '#10b981', margin: '4px 0' }}>
+              <div style={{ fontSize: '2.4rem', fontWeight: 800, color: '#111111', margin: '4px 0' }}>
                 {data.estimated_people_impacted.toLocaleString()}
               </div>
-              <span style={{ fontSize: '0.75rem', color: '#6ee7b7' }}>Population Coverage</span>
+              <span style={{ fontSize: '0.75rem', color: '#555555' }}>Population Coverage</span>
             </div>
 
-            <div className="glass-panel" style={{ padding: '24px' }}>
+            <div className="glass-panel" style={{ padding: '24px', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
               <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Crowdsourced Problems</div>
-              <div style={{ fontSize: '2.4rem', fontWeight: 800, color: '#6366f1', margin: '4px 0' }}>
+              <div style={{ fontSize: '2.4rem', fontWeight: 800, color: '#111111', margin: '4px 0' }}>
                 {data.total_problems_crowdsourced}
               </div>
-              <span style={{ fontSize: '0.75rem', color: '#a5b4fc' }}>100% AI Analyzed</span>
+              <span style={{ fontSize: '0.75rem', color: '#555555' }}>100% AI Analyzed</span>
             </div>
 
-            <div className="glass-panel" style={{ padding: '24px' }}>
+            <div className="glass-panel" style={{ padding: '24px', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
               <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Active Solution Projects</div>
-              <div style={{ fontSize: '2.4rem', fontWeight: 800, color: '#06b6d4', margin: '4px 0' }}>
+              <div style={{ fontSize: '2.4rem', fontWeight: 800, color: '#111111', margin: '4px 0' }}>
                 {data.projects_created}
               </div>
-              <span style={{ fontSize: '0.75rem', color: '#67e8f9' }}>Campuses Engaged</span>
+              <span style={{ fontSize: '0.75rem', color: '#555555' }}>Campuses Engaged</span>
             </div>
 
-            <div className="glass-panel" style={{ padding: '24px' }}>
+            <div className="glass-panel" style={{ padding: '24px', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
               <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Milestones Execution</div>
-              <div style={{ fontSize: '2.4rem', fontWeight: 800, color: '#a855f7', margin: '4px 0' }}>
+              <div style={{ fontSize: '2.4rem', fontWeight: 800, color: '#111111', margin: '4px 0' }}>
                 {data.milestones_execution.completion_rate_pct}%
               </div>
-              <span style={{ fontSize: '0.75rem', color: '#c084fc' }}>
+              <span style={{ fontSize: '0.75rem', color: '#555555' }}>
                 {data.milestones_execution.completed} / {data.milestones_execution.total} Milestones Done
               </span>
             </div>
@@ -79,8 +79,8 @@ export default function ImpactAnalyticsView() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
             
             {/* Real AI Priority Distribution */}
-            <div className="glass-panel" style={{ padding: '24px' }}>
-              <h3 style={{ fontSize: '1.1rem', marginBottom: '16px', color: '#818cf8' }}>AI Priority Distribution</h3>
+            <div className="glass-panel" style={{ padding: '24px', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
+              <h3 style={{ fontSize: '1.1rem', marginBottom: '16px', color: '#111111' }}>AI Priority Distribution</h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <span>Critical Priority Problems</span>
@@ -98,15 +98,15 @@ export default function ImpactAnalyticsView() {
             </div>
 
             {/* Regional District Coverage */}
-            <div className="glass-panel" style={{ padding: '24px' }}>
-              <h3 style={{ fontSize: '1.1rem', marginBottom: '16px', color: '#06b6d4' }}>Regional District Coverage</h3>
+            <div className="glass-panel" style={{ padding: '24px', background: '#FFFFFF', border: '1px solid #E5E5E5' }}>
+              <h3 style={{ fontSize: '1.1rem', marginBottom: '16px', color: '#111111' }}>Regional District Coverage</h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 {Object.entries(data.district_coverage || {}).map(([dist, count]) => (
-                  <div key={dist} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '6px' }}>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <MapPin size={14} style={{ color: '#06b6d4' }} /> {dist} District
+                  <div key={dist} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #EEEEEE', paddingBottom: '6px' }}>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#555555' }}>
+                      <MapPin size={14} style={{ color: '#111111' }} /> {dist} District
                     </span>
-                    <strong style={{ color: '#f8fafc' }}>{count} Problem(s)</strong>
+                    <strong style={{ color: '#111111' }}>{count} Problem(s)</strong>
                   </div>
                 ))}
               </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Send, Sparkles, AlertTriangle, CheckCircle, Cpu } from 'lucide-react';
+import { X, Send, Sparkles, CheckCircle, Cpu } from 'lucide-react';
 import { api } from '../services/api';
 
 export default function SubmitProblemModal({ isOpen, onClose, onProblemSubmitted }) {
@@ -41,13 +41,13 @@ export default function SubmitProblemModal({ isOpen, onClose, onProblemSubmitted
   };
 
   return (
-    <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(8px)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
-      <div className="glass-panel-glow" style={{ width: '100%', maxWidth: '750px', maxHeight: '90vh', overflowY: 'auto', padding: '32px', position: 'relative' }}>
+    <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(4px)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
+      <div className="glass-panel" style={{ width: '100%', maxWidth: '750px', maxHeight: '90vh', overflowY: 'auto', padding: '32px', position: 'relative', background: '#FFFFFF', border: '1px solid #E5E5E5', borderRadius: '12px' }}>
         
         {/* Header */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px', borderBottom: '1px solid var(--border-subtle)', pb: '16px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px', borderBottom: '1px solid #E5E5E5', paddingBottom: '16px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(99, 102, 241, 0.2)', color: '#818cf8' }}>
+            <div style={{ padding: '10px', borderRadius: '8px', background: '#F3F3F3', color: '#111111' }}>
               <Sparkles size={24} />
             </div>
             <div>
@@ -63,19 +63,19 @@ export default function SubmitProblemModal({ isOpen, onClose, onProblemSubmitted
         {/* AI Analysis Result Screen */}
         {aiResult ? (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            <div style={{ padding: '16px', borderRadius: '12px', background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.3)', display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <CheckCircle size={24} color="#10b981" />
+            <div style={{ padding: '16px', borderRadius: '8px', background: '#F3F3F3', border: '1px solid #E5E5E5', display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <CheckCircle size={24} color="#111111" />
               <div>
-                <strong style={{ color: '#6ee7b7' }}>Problem Submitted & Analyzed by Real SentenceTransformers AI!</strong>
-                <p style={{ fontSize: '0.85rem', color: '#a7f3d0' }}>Problem ID #{aiResult.problem.problem_id} — Status: {aiResult.problem.status}</p>
+                <strong style={{ color: '#111111' }}>Problem Submitted & Analyzed by Real SentenceTransformers AI!</strong>
+                <p style={{ fontSize: '0.85rem', color: '#555555' }}>Problem ID #{aiResult.problem.problem_id} — Status: {aiResult.problem.status}</p>
               </div>
             </div>
 
             {/* AI Priority Breakdown */}
-            <div style={{ background: 'var(--bg-card)', padding: '20px', borderRadius: '12px', border: '1px solid var(--border-subtle)' }}>
+            <div style={{ background: '#FFFFFF', padding: '20px', borderRadius: '8px', border: '1px solid #E5E5E5' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
                 <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Calculated Priority Score</span>
-                <span className={`badge badge-${aiResult.ai_analysis.priority_level.toLowerCase()}`} style={{ fontSize: '1rem', padding: '6px 14px' }}>
+                <span className="badge badge-high" style={{ fontSize: '1rem', padding: '6px 14px' }}>
                   {aiResult.ai_analysis.priority_score} / 100 ({aiResult.ai_analysis.priority_level})
                 </span>
               </div>
@@ -83,16 +83,16 @@ export default function SubmitProblemModal({ isOpen, onClose, onProblemSubmitted
               <h4 style={{ fontSize: '0.9rem', marginBottom: '8px', color: 'var(--text-secondary)' }}>Extracted Technical Skills</h4>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '16px' }}>
                 {aiResult.ai_analysis.extracted_skills.map((skill, idx) => (
-                  <span key={idx} style={{ background: 'rgba(99, 102, 241, 0.15)', color: '#a5b4fc', border: '1px solid rgba(99, 102, 241, 0.3)', padding: '4px 10px', borderRadius: '6px', fontSize: '0.8rem' }}>
+                  <span key={idx} style={{ background: '#F3F3F3', color: '#111111', border: '1px solid #E5E5E5', padding: '4px 10px', borderRadius: '6px', fontSize: '0.8rem' }}>
                     {skill}
                   </span>
                 ))}
               </div>
 
               {/* Duplicate Search */}
-              <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '12px' }}>
+              <div style={{ borderTop: '1px solid #E5E5E5', paddingTop: '12px' }}>
                 <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Semantic Cosine Duplicate Check:</span>
-                <strong style={{ color: aiResult.ai_analysis.duplicate_relationship === 'NOT_DUPLICATE' ? '#10b981' : '#f59e0b', marginLeft: '8px' }}>
+                <strong style={{ color: '#111111', marginLeft: '8px' }}>
                   {aiResult.ai_analysis.duplicate_relationship} (Max Similarity: {(aiResult.ai_analysis.max_similarity * 100).toFixed(1)}%)
                 </strong>
               </div>
@@ -106,7 +106,7 @@ export default function SubmitProblemModal({ isOpen, onClose, onProblemSubmitted
           /* Submission Form */
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {error && (
-              <div style={{ padding: '12px', background: 'rgba(244, 63, 94, 0.15)', border: '1px solid rgba(244, 63, 94, 0.3)', borderRadius: '8px', color: '#fda4af', fontSize: '0.85rem' }}>
+              <div style={{ padding: '12px', background: '#FEF2F2', border: '1px solid #FCA5A5', borderRadius: '8px', color: '#991B1B', fontSize: '0.85rem' }}>
                 {error}
               </div>
             )}
@@ -119,7 +119,7 @@ export default function SubmitProblemModal({ isOpen, onClose, onProblemSubmitted
                 placeholder="e.g. Smart Urban Flood & Drainage Monitoring System"
                 value={formData.title} 
                 onChange={e => setFormData({ ...formData, title: e.target.value })}
-                style={{ width: '100%', background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', padding: '10px 14px', borderRadius: '8px', color: '#fff', fontSize: '0.9rem' }}
+                style={{ width: '100%', background: '#FFFFFF', border: '1px solid #E5E5E5', padding: '10px 14px', borderRadius: '8px', color: '#111111', fontSize: '0.9rem' }}
               />
             </div>
 
@@ -131,7 +131,7 @@ export default function SubmitProblemModal({ isOpen, onClose, onProblemSubmitted
                 placeholder="Describe the issue, location details, affected population, and urgency..."
                 value={formData.description} 
                 onChange={e => setFormData({ ...formData, description: e.target.value })}
-                style={{ width: '100%', background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', padding: '10px 14px', borderRadius: '8px', color: '#fff', fontSize: '0.9rem' }}
+                style={{ width: '100%', background: '#FFFFFF', border: '1px solid #E5E5E5', padding: '10px 14px', borderRadius: '8px', color: '#111111', fontSize: '0.9rem' }}
               />
             </div>
 
@@ -141,7 +141,7 @@ export default function SubmitProblemModal({ isOpen, onClose, onProblemSubmitted
                 <select 
                   value={formData.category} 
                   onChange={e => setFormData({ ...formData, category: e.target.value })}
-                  style={{ width: '100%', background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', padding: '8px', borderRadius: '6px', color: '#fff' }}
+                  style={{ width: '100%', background: '#FFFFFF', border: '1px solid #E5E5E5', padding: '8px', borderRadius: '6px', color: '#111111' }}
                 >
                   <option value="Environment">Environment & Urban</option>
                   <option value="Water & Sanitation">Water & Sanitation</option>
@@ -157,7 +157,7 @@ export default function SubmitProblemModal({ isOpen, onClose, onProblemSubmitted
                   type="text" 
                   value={formData.district} 
                   onChange={e => setFormData({ ...formData, district: e.target.value })}
-                  style={{ width: '100%', background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', padding: '8px', borderRadius: '6px', color: '#fff' }}
+                  style={{ width: '100%', background: '#FFFFFF', border: '1px solid #E5E5E5', padding: '8px', borderRadius: '6px', color: '#111111' }}
                 />
               </div>
 
@@ -166,7 +166,7 @@ export default function SubmitProblemModal({ isOpen, onClose, onProblemSubmitted
                 <select 
                   value={formData.language} 
                   onChange={e => setFormData({ ...formData, language: e.target.value })}
-                  style={{ width: '100%', background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', padding: '8px', borderRadius: '6px', color: '#fff' }}
+                  style={{ width: '100%', background: '#FFFFFF', border: '1px solid #E5E5E5', padding: '8px', borderRadius: '6px', color: '#111111' }}
                 >
                   <option value="en">English</option>
                   <option value="ta">Tamil (தமிழ்)</option>
@@ -175,7 +175,7 @@ export default function SubmitProblemModal({ isOpen, onClose, onProblemSubmitted
             </div>
 
             {/* Severity & Urgency Controls */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px', background: 'rgba(255,255,255,0.03)', padding: '12px', borderRadius: '8px', border: '1px solid var(--border-subtle)' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px', background: '#F7F7F7', padding: '12px', borderRadius: '8px', border: '1px solid #E5E5E5' }}>
               <div>
                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Severity (1-5): {formData.severity}</label>
                 <input type="range" min="1" max="5" step="0.5" value={formData.severity} onChange={e => setFormData({ ...formData, severity: parseFloat(e.target.value) })} style={{ width: '100%' }} />
