@@ -9,3 +9,5 @@ services:
         value: 3.10.11
       - key: CORS_ORIGINS
         value: "*"
+      - key: TOKENIZERS_PARALLELISM
+        value: "false"

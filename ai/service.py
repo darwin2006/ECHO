@@ -2,12 +2,16 @@
 SIH_26 — Real Local AI Service Module
 Uses Sentence Transformers for real vector embedding generation, cosine similarity duplicate detection,
 7-factor priority scoring, and 16-factor university capability vs. practical capacity matching logic.
-Optimized for 512MB RAM compliance on Render cloud instances.
+Optimized for 512MB RAM compliance on Render cloud instances with lazy model loading and torch.inference_mode().
 """
 
+import os
 import math
 from typing import List, Dict, Any, Optional
 import numpy as np
+
+# Disable tokenizer parallelism to save thread RAM overhead
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 try:
     from sentence_transformers import SentenceTransformer
@@ -18,6 +22,8 @@ except ImportError:
 try:
     import torch
     torch.set_num_threads(1)
+    if hasattr(torch, "set_grad_enabled"):
+        torch.set_grad_enabled(False)
     TORCH_AVAILABLE = True
 except Exception:
     TORCH_AVAILABLE = False
@@ -25,19 +31,16 @@ except Exception:
 
 class RealAIService:
     """
-    Real Local AI Service using Sentence Transformers inference.
+    Real Local AI Service using Sentence Transformers inference with lazy initialization.
     """
     def __init__(self, model_name: Optional[str] = None):
-        if model_name is None:
-            try:
-                from backend.app.core.config import settings
-                model_name = settings.AI_MODEL_NAME
-            except Exception:
-                model_name = "all-MiniLM-L6-v2"
-        self.model_name = model_name
+        self.model_name = model_name or "all-MiniLM-L6-v2"
         self._model = None
 
     def _load_model(self):
+        """
+        Lazily loads the SentenceTransformer model into RAM on first inference call.
+        """
         if self._model is None:
             if not SENTENCE_TRANSFORMERS_AVAILABLE:
                 raise RuntimeError("sentence_transformers library is not installed in the environment.")
@@ -50,18 +53,26 @@ class RealAIService:
 
             try:
                 self._model = SentenceTransformer(self.model_name)
-            except Exception as e:
-                # Fallback to lightweight all-MiniLM-L6-v2 if model load or download fails
+            except Exception:
                 self.model_name = "all-MiniLM-L6-v2"
                 self._model = SentenceTransformer(self.model_name)
 
     def generate_embedding(self, text: str) -> List[float]:
         """
-        Generates dense vector embedding for input text.
+        Generates dense 384-dimensional vector embedding for input text using torch.inference_mode().
         Returns a list of float numbers.
         """
         self._load_model()
-        vector = self._model.encode(text, convert_to_numpy=True)
+
+        if TORCH_AVAILABLE and hasattr(torch, "inference_mode"):
+            with torch.inference_mode():
+                vector = self._model.encode(text, convert_to_numpy=True)
+        elif TORCH_AVAILABLE and hasattr(torch, "no_grad"):
+            with torch.no_grad():
+                vector = self._model.encode(text, convert_to_numpy=True)
+        else:
+            vector = self._model.encode(text, convert_to_numpy=True)
+
         return vector.tolist()
 
     @staticmethod
@@ -277,5 +288,5 @@ class RealAIService:
         return ranked_shortlist
 
 
-# Singleton Instance
+# Singleton Instance (Lazy initialization)
 ai_service = RealAIService()

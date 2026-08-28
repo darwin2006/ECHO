@@ -58,11 +58,17 @@ class ProblemService:
             if emb_rec.problem_id != db_problem.problem_id:
                 prob = db.query(Problem).filter(Problem.problem_id == emb_rec.problem_id).first()
                 if prob:
+                    vec = json.loads(emb_rec.vector_json) if emb_rec.vector_json else None
+                    if vec is None:
+                        text = f"{prob.title}. {prob.description}"
+                        vec = ai_service.generate_embedding(text)
+                        emb_rec.vector_json = json.dumps(vec)
+                        db.commit()
                     stored_problems_payload.append({
                         "id": prob.problem_id,
                         "title": prob.title,
                         "description": prob.description,
-                        "embedding": json.loads(emb_rec.vector_json)
+                        "embedding": vec
                     })
 
         # 3. Real AI Duplicate Detection (SentenceTransformers embedding generation + cosine similarity)

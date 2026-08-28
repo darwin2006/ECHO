@@ -30,7 +30,7 @@ class ProblemEmbedding(Base):
 
     embedding_id = Column(Integer, primary_key=True, index=True)
     problem_id = Column(Integer, ForeignKey("problems.problem_id"), unique=True, nullable=False)
-    vector_json = Column(Text, nullable=False)  # JSON array of floats (pluggable with pgvector vector column)
+    vector_json = Column(Text, nullable=True)  # JSON array of floats (pluggable with pgvector vector column)
     vector_dim = Column(Integer, default=384)
     model_name = Column(String, default="all-MiniLM-L6-v2")
     created_at = Column(DateTime, default=datetime.utcnow)

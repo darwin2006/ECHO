@@ -226,16 +226,13 @@ def seed_database(db: Session = None):
         db.add_all([p1, p2])
         db.commit()
 
-        # Generate Real Embeddings for Seed Problems using RealAIService
+        # Seed AI Analysis & Deferred Embedding Records for Seed Problems
         from backend.app.models.ai import ProblemEmbedding, AIAnalysis
         for p in [p1, p2]:
-            text = f"{p.title}. {p.description}"
-            vec = ai_service.generate_embedding(text)
-            
             db.add(ProblemEmbedding(
                 problem_id=p.problem_id,
-                vector_json=json.dumps(vec),
-                vector_dim=len(vec),
+                vector_json=None,  # Deferred real embedding generation on demand
+                vector_dim=384,
                 model_name=ai_service.model_name
             ))
             
